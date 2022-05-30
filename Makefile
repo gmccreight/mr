@@ -2,4 +2,4 @@
 .PHONY = test
 
 test:
-	echo "hello"
+	MR_ENVFILE=./tests/.testenv ./bin/mr

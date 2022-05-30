@@ -2,4 +2,15 @@
 
 set -eu
 
-echo mr
+echo $MR_ENVFILE
+
+set -o allexport
+source $MR_ENVFILE
+set +o allexport
+
+if ! test -d $MR_REPO_BASE; then
+  echo "expected the env file's MR_REPO_BASE: $MR_REPO_BASE to exist"
+  exit 1
+fi
+
+echo "done"
