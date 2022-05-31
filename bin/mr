@@ -13,4 +13,17 @@ if ! test -d $MR_REPO_BASE; then
   exit 1
 fi
 
-echo "done"
+cd $MR_REPO_BASE
+
+if ! test $MR_REMOTE; then
+  echo "expected the env file's MR_REMOTE: $MR_REMOTE to specify the remote"
+  exit 1
+fi
+
+if ! test $MR_BASENAME; then
+  echo "expected the env file's MR_BASENAME to exist"
+  exit 1
+fi
+
+pwd
+git clone $MR_REMOTE $MR_BASENAME

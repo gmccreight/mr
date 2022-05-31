@@ -1,1 +1,3 @@
 MR_REPO_BASE=./tests/testrepobase
+MR_REMOTE=../origin_repo
+MR_BASENAME=fowl

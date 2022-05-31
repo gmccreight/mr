@@ -1,0 +1,37 @@
+#!/bin/bash
+
+setup() {
+  # Create the "origin" repo
+	rm -rf ./tests/origin_repo
+	mkdir ./tests/origin_repo
+	cd ./tests/origin_repo
+	git init
+	echo "a" > a.txt
+	git add .
+	git commit -m "one file"
+
+  # Clear the testrepobase
+  cd ../testrepobase
+  rm -rf *
+}
+
+teardown() {
+	rm -rf ./tests/origin_repo
+}
+
+log_info() {
+    local MSG="$1"
+    printf "%s - [INFO] %s\n" "$(date)" "$MSG"
+}
+
+log_error() {
+    local MSG="$1"
+    printf "%s - [ERROR] %s\n" "$(date)" "$MSG" >&2
+}
+
+case "$1" in
+    "") ;;
+    setup) "$@"; exit;;
+    teardown) "$@"; exit;;
+    *) log_error "Unkown function: $1()"; exit 2;;
+esac
